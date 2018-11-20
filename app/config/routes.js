@@ -1,10 +1,12 @@
 import React from 'react'
-import { StackNavigator,TabNavigator } from "react-navigation";
+import { StackNavigator, TabNavigator } from "react-navigation";
 import Icon from 'react-native-vector-icons'
 import Home from "../screens/home";
 import MarvelListChars from "../screens/pages/Characters/ListMarvelChars";
 import MarvelCharInfo from "../screens/pages/Characters/MarvelCharInfo";
-export const navHome= StackNavigator({
+import MarvelListCreats from "../screens/pages/Creators/ListMarvelCreats";
+import MarvelCreatInfo from "../screens/pages/Creators/MarvelCreatInfo";
+export const navHome = StackNavigator({
   HomeScreen: {
     screen: Home,
     navigationOptions: {
@@ -13,7 +15,7 @@ export const navHome= StackNavigator({
   }
 });
 
-export const navCharacters= StackNavigator({
+export const navCharacters = StackNavigator({
   MarvelListCharsScreen: {
     screen: MarvelListChars,
     navigationOptions: {
@@ -28,13 +30,30 @@ export const navCharacters= StackNavigator({
   }
 });
 
+export const navCreators = StackNavigator({
+  MarvelListCreatsScreen: {
+    screen: MarvelListCreats,
+    navigationOptions: {
+      headerTitle: "Marvel Creators"
+    }
+  },
+  MarvelCreatInfoScreen: {
+    screen: MarvelCreatInfo,
+    navigationOptions: {
+      headerTitle: "Creators Detail"
+    }
+  }
+});
 export default TabNavigator({
-  Home:{
+  Home: {
     screen: navHome
   },
-  Heros:{
+  Heros: {
     screen: navCharacters
-  }
+  },
+  Creators: {
+    screen: navCreators
+  },
 }, {
-  tabBarPosition: 'bottom',
-})
+    tabBarPosition: 'bottom',
+  })

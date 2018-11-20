@@ -1,4 +1,5 @@
 import * as getChars from "./ListMarvelChars";
 import * as marvelChar from "./MarvelChar";
-
-export default { getChars,marvelChar };
+import * as getCreats from "./ListMarvelCreats";
+import * as marvelCreat from "./MarvelCreat";
+export default { getChars, marvelChar, getCreats, marvelCreat };

@@ -11,14 +11,20 @@ export default class Home extends Component {
   state = {
     isToggleOn: true
   };
-  componentDidMount() {}
+  componentDidMount() { }
   render() {
     return (
       <View>
         <Button
-          title="Go to Marvel"
+          title="Go to Marvel heros"
           onPress={() =>
             this.props.navigation.navigate("MarvelListCharsScreen")
+          }
+        />
+        <Button
+          title="Go to Creators"
+          onPress={() =>
+            this.props.navigation.navigate("MarvelListCreatsScreen")
           }
         />
       </View>
