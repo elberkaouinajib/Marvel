@@ -21,31 +21,29 @@ import PropTypes from "prop-types";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import allTheActions from "../../../actions";
-class ListMarvelChars extends React.Component {
+class ListMarvelSeries extends React.Component {
   static propTypes = {
     actions: PropTypes.object,
-    MarvelChars: PropTypes.array,
+    MarvelSeries: PropTypes.array,
     offset: PropTypes.number,
     navigation: PropTypes.shape({
       navigate: PropTypes.func.isRequired
     }).isRequired
   };
   componentDidMount() {
-    console.log("List Chars props", this.props);
-    console.log("theme: ", theme.background);
-    if (!this.props.marvelChars) {
-      this.props.actions.getChars.getCharacters();
+    if (!this.props.marvelseries) {
+      this.props.actions.getSeries.getSeries();
     }
   }
   actionOnRow = item => {
     console.log(item);
-    this.props.navigation.navigate("MarvelCharInfoScreen", {
-      CharId: item
+    this.props.navigation.navigate("MarvelSerieInfoScreen", {
+      serieId: item
     });
   };
   onEndReached = () => {
     const { actions, offset } = this.props;
-    actions.getChars.getCharacters(offset + 20);
+    actions.getSeries.getSeries(offset + 20);
   };
 
   _keyExtractor = item => `${item.id}`;
@@ -81,10 +79,12 @@ class ListMarvelChars extends React.Component {
                 margin: 0
               }}
             >
-              <Text style={{ margin: 0, padding: 0 }}>{item.name}</Text>
+              <Text style={{ margin: 0, padding: 0 }}>{item.title}</Text>
             </Row>
             <Row size={75}>
-              <Text note>{item.description.substr(0, 50)} </Text>
+              <Text note>
+                {item.description ? item.description.substr(0, 50) : " "}{" "}
+              </Text>
             </Row>
           </Grid>
         </Body>
@@ -97,7 +97,7 @@ class ListMarvelChars extends React.Component {
       <Background>
         <FlatList
           keyExtractor={this.keyExtractor}
-          data={this.props.MarvelChars}
+          data={this.props.MarvelSeries}
           renderItem={this.renderItem}
           onEndReached={this.onEndReached}
         />
@@ -107,21 +107,21 @@ class ListMarvelChars extends React.Component {
 }
 const mapStateToProps = state => {
   console.log("propos marvel");
-  console.log(state.getChars);
+  console.log(state.getSeries);
   console.log("propos marvel");
   return {
-    MarvelChars: state.getChars.marvelCharsList,
-    offset: state.getChars.offset
+    MarvelSeries: state.getSeries.marvelSeriesList,
+    offset: state.getSeries.offset
   };
 };
 
 const mapDispatchToProps = dispatch => ({
   actions: {
-    getChars: bindActionCreators(allTheActions.getChars, dispatch)
+    getSeries: bindActionCreators(allTheActions.getSeries, dispatch)
   }
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ListMarvelChars);
+)(ListMarvelSeries);

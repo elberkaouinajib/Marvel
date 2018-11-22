@@ -6,26 +6,24 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import allTheActions from "../../../actions";
 import { Grid, Row, Col } from "react-native-easy-grid";
-class MarvelCharInfo extends Component {
+class MarvelSerieInfo extends Component {
   static propTypes = {
     navigation: PropTypes.shape({
       navigate: PropTypes.func.isRequired
     }).isRequired
   };
   state = {
-    CharId: 0,
-    CharPic: "",
-    CharName: ""
+    personame: { toto: 0 }
   };
   componentDidMount() {
     const { navigation } = this.props;
     const { actions } = this.props;
-    const CharId = navigation.getParam("CharId");
-    actions.marvelChar.getCharacterInfo(CharId);
-    this.setState({ CharId });
+    const serieId = navigation.getParam("serieId");
+    actions.marvelSerie.getSerieInfo(serieId);
   }
   render() {
-    if (this.props.marvelChar.marvelChar.thumbnail)
+    console.log(this.props);
+    if (this.props.marvelSerie.marvelSerie.thumbnail)
       return (
         <View style={styles.container}>
           <Grid>
@@ -36,13 +34,17 @@ class MarvelCharInfo extends Component {
                     style={{ height: 200, width: 200 }}
                     source={{
                       uri: `${
-                        this.props.marvelChar.marvelChar.thumbnail.path
-                      }.${this.props.marvelChar.marvelChar.thumbnail.extension}`
+                        this.props.marvelSerie.marvelSerie.thumbnail.path
+                      }.${
+                        this.props.marvelSerie.marvelSerie.thumbnail.extension
+                      }`
                     }}
                   />
                 </Col>
                 <Col>
-                  <Text>Name : {this.props.marvelChar.marvelChar.name}</Text>
+                  <Text>
+                    Title : {this.props.marvelSerie.marvelSerie.title}
+                  </Text>
                 </Col>
               </Row>
               <Row size={60}>
@@ -56,7 +58,7 @@ class MarvelCharInfo extends Component {
                   >
                     Description :{" "}
                   </Text>
-                  <Text>{this.props.marvelChar.marvelChar.description}</Text>
+                  <Text>{this.props.marvelSerie.marvelSerie.description}</Text>
                   <View style={{ marginTop: 20 }}>
                     <Button
                       buttonStyle={{
@@ -94,7 +96,7 @@ class MarvelCharInfo extends Component {
                       }}
                       title="Series"
                       onPress={() =>
-                        this.props.navigation.navigate("ListCharSeriesScreen")
+                        this.props.navigation.navigate("MarvelListCharsScreen")
                       }
                     />
                     <Button
@@ -132,17 +134,17 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => {
   return {
-    marvelChar: state.marvelChar
+    marvelSerie: state.marvelSerie
   };
 };
 
 const mapDispatchToProps = dispatch => ({
   actions: {
-    marvelChar: bindActionCreators(allTheActions.marvelChar, dispatch)
+    marvelSerie: bindActionCreators(allTheActions.marvelSerie, dispatch)
   }
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(MarvelCharInfo);
+)(MarvelSerieInfo);
