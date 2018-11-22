@@ -5,6 +5,7 @@ import {
 
 const initialState = {
   marvelSeriesList: [],
+  marvelCharSeriesList: [],
   offset: 0
 };
 

@@ -58,7 +58,7 @@ export const getCharSeries = (offset = 0, charId) => dispatch => {
     }
   })
     .then(res => {
-      console.log("redux", res);
+      console.log("redux getCharSeries", res);
       dispatch(
         getAllCharSeries({
           list: res.data.data.results,
