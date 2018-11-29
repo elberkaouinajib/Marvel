@@ -134,7 +134,7 @@ export const getStoryChars = (offset = 0, StoryId) => dispatch => {
   const privateKey = "90844a9f70b1e8eedb0bdfcb597a1524b9a62822";
   const TimeStamp = new Date().getMilliseconds();
   const hash = md5(`${TimeStamp}${privateKey}${publicKey}`);
-  const generatedUrl = `https://gateway.marvel.com//v1/public/series/${StoryId}/characters`;
+  const generatedUrl = `https://gateway.marvel.com//v1/public/stories/${StoryId}/characters`;
   axios({
     method: "GET",
     url: generatedUrl,
