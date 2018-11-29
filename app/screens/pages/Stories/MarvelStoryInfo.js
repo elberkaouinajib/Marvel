@@ -6,7 +6,7 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import allTheActions from "../../../actions";
 import { Grid, Row, Col } from "react-native-easy-grid";
-class MarvelSerieInfo extends Component {
+class MarvelStoryInfo extends Component {
   static propTypes = {
     navigation: PropTypes.shape({
       navigate: PropTypes.func.isRequired
@@ -147,4 +147,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(MarvelSerieInfo);
+)(MarvelStoryInfo);

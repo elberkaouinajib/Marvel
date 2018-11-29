@@ -2,13 +2,31 @@ import React from "react";
 import { StackNavigator, TabNavigator } from "react-navigation";
 import Icon from "react-native-vector-icons";
 import Home from "../screens/home";
+
+//Characters
 import MarvelListChars from "../screens/pages/Characters/ListMarvelChars";
 import MarvelCharInfo from "../screens/pages/Characters/MarvelCharInfo";
+import ListCharSeries from "../screens/pages/Characters/ListCharSeries";
+import ListCharComics from "../screens/pages/Characters/ListCharComics";
+import ListCharStories from "../screens/pages/Characters/ListCharStories";
+
+//Comics
 import ListMarvelComics from "../screens/pages/Comics/ListMarvelComics";
 import MarvelComicInfo from "../screens/pages/Comics/MarvelComicInfo";
+
+//Series
 import ListMarvelSeries from "../screens/pages/Series/ListMarvelSeries";
 import MarvelSerieInfo from "../screens/pages/Series/MarvelSerieInfo";
-import ListCharSeries from "../screens/pages/Characters/ListCharSeries";
+import ListSerieChars from "../screens/pages/Series/ListSerieChars";
+import ListSerieComics from "../screens/pages/Series/ListSerieComics";
+import ListSerieStories from "../screens/pages/Series/ListSerieStories";
+
+//Stories
+import ListMarvelStories from "../screens/pages/Stories/ListMarvelStories";
+import ListStoryChars from "../screens/pages/Stories/ListStoryChars";
+import ListStoryComics from "../screens/pages/Stories/ListStoryComics";
+import ListStorySeries from "../screens/pages/Stories/ListStorySeries";
+import MarvelStoryInfo from "../screens/pages/Stories/MarvelStoryInfo";
 
 export const navHome = StackNavigator({
   HomeScreen: {
@@ -36,6 +54,18 @@ export const navCharacters = StackNavigator({
     screen: ListCharSeries,
     navigationOptions: {
       headerTitle: "Hero Series"
+    }
+  },
+  ListCharComicsScreen: {
+    screen: ListCharComics,
+    navigationOptions: {
+      headerTitle: "Hero Comics"
+    }
+  },
+  ListCharStoriesScreen: {
+    screen: ListCharStories,
+    navigationOptions: {
+      headerTitle: "Hero Stories"
     }
   }
 });
@@ -67,6 +97,57 @@ export const navSeries = StackNavigator({
     navigationOptions: {
       headerTitle: "Serie Detail"
     }
+  },
+  ListSerieCharsScreen: {
+    screen: ListSerieChars,
+    navigationOptions: {
+      headerTitle: "Serie Heros"
+    }
+  },
+  ListSerieComicsScreen: {
+    screen: ListSerieComics,
+    navigationOptions: {
+      headerTitle: "Serie Comics"
+    }
+  },
+  ListSerieStoriesScreen: {
+    screen: ListSerieStories,
+    navigationOptions: {
+      headerTitle: "Serie Stories"
+    }
+  }
+});
+
+export const navStories = StackNavigator({
+  ListMarvelStoriesScreen: {
+    screen: ListMarvelStories,
+    navigationOptions: {
+      headerTitle: "Marvel Stories"
+    }
+  },
+  MarvelStoryInfoScreen: {
+    screen: MarvelStoryInfo,
+    navigationOptions: {
+      headerTitle: "Story Detail"
+    }
+  },
+  ListStoryCharsScreen: {
+    screen: ListStoryChars,
+    navigationOptions: {
+      headerTitle: "Story Heros"
+    }
+  },
+  ListStoryComicsScreen: {
+    screen: ListStoryComics,
+    navigationOptions: {
+      headerTitle: "Story Comics"
+    }
+  },
+  ListStorySeriesScreen: {
+    screen: ListStorySeries,
+    navigationOptions: {
+      headerTitle: "Story Series"
+    }
   }
 });
 
@@ -83,6 +164,9 @@ export default TabNavigator(
     },
     Series: {
       screen: navSeries
+    },
+    Stories: {
+      screen: navStories
     }
   },
   {
