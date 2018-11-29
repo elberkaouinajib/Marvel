@@ -1,6 +1,6 @@
 import React from "react";
 import { StackNavigator, TabNavigator } from "react-navigation";
-import Icon from "react-native-vector-icons";
+import { Icon } from "react-native-elements";
 import Home from "../screens/home";
 
 //Characters
@@ -154,22 +154,48 @@ export const navStories = StackNavigator({
 export default TabNavigator(
   {
     Home: {
-      screen: navHome
+      screen: navHome,
+      navigationOptions: {
+        tabBarLabel: "Home",
+        tabBarIcon: () => <Icon name="home" size={25} color="red" />
+      }
     },
     Heros: {
-      screen: navCharacters
+      screen: navCharacters,
+      navigationOptions: {
+        tabBarLabel: "Heros",
+        tabBarIcon: () => <Icon name="person" size={25} color="red" />
+      }
     },
     Comics: {
-      screen: navComics
+      screen: navComics,
+      navigationOptions: {
+        tabBarLabel: "Comics",
+        tabBarIcon: () => <Icon name="book" size={25} color="red" />
+      }
     },
     Series: {
-      screen: navSeries
+      screen: navSeries,
+      navigationOptions: {
+        tabBarLabel: "Series",
+        tabBarIcon: () => <Icon name="tv" size={25} color="red" />
+      }
     },
     Stories: {
-      screen: navStories
+      screen: navStories,
+      navigationOptions: {
+        tabBarLabel: "Stories",
+        tabBarIcon: () => <Icon name="subject" size={25} color="red" />
+      }
     }
   },
   {
-    tabBarPosition: "bottom"
+    tabBarPosition: "bottom",
+    tabBarOptions: {
+      showIcon: true,
+      labelStyle: {
+        fontSize: 12.5
+      }
+    }
   }
 );

@@ -33,15 +33,10 @@ class ListCharSeries extends React.Component {
   componentDidMount() {
     console.log("char series", this.props.marvelChar);
     if (this.props.marvelChar) {
+      this.props.actions.getSeries.cleanCharSeries();
       this.props.actions.getSeries.getCharSeries(0, this.props.marvelChar.id);
     }
   }
-  actionOnRow = item => {
-    console.log(item);
-    this.props.navigation.navigate("MarvelSerieInfoScreen", {
-      serieId: item
-    });
-  };
   onEndReached = () => {
     const { actions, offset } = this.props;
     actions.getSeries.getCharSeries(offset + 20, this.props.marvelChar.id);
@@ -53,7 +48,6 @@ class ListCharSeries extends React.Component {
     <View>
       <ListItem
         avatar
-        onPress={() => this.actionOnRow(item.id)}
         style={{
           marginBottom: 5,
           borderBottomRightRadius: 20,

@@ -81,19 +81,6 @@ class MarvelSerieInfo extends Component {
                         borderColor: "yellow",
                         borderRadius: 10
                       }}
-                      title="Creators"
-                      onPress={() =>
-                        this.props.navigation.navigate("MarvelListCharsScreen")
-                      }
-                    />
-                    <Button
-                      buttonStyle={{
-                        margin: 3,
-                        backgroundColor: "red",
-                        borderWidth: 1,
-                        borderColor: "yellow",
-                        borderRadius: 10
-                      }}
                       title="Series"
                       onPress={() =>
                         this.props.navigation.navigate("MarvelListCharsScreen")

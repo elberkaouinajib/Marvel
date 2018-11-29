@@ -4,6 +4,8 @@ import * as getComics from "./ListMarvelComics";
 import * as marvelComic from "./MarvelComic";
 import * as getSeries from "./ListMarvelSeries";
 import * as marvelSerie from "./MarvelSerie";
+import * as getStories from "./ListMarvelStories";
+import * as marvelStory from "./MarvelStory";
 
 export default {
   getChars,
@@ -11,5 +13,7 @@ export default {
   getComics,
   marvelComic,
   getSeries,
-  marvelSerie
+  marvelSerie,
+  getStories,
+  marvelStory
 };

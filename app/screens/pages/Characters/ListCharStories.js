@@ -24,27 +24,22 @@ import allTheActions from "../../../actions";
 class ListCharStories extends React.Component {
   static propTypes = {
     actions: PropTypes.object,
-    MarvelSeries: PropTypes.array,
+    MarvelStories: PropTypes.array,
     offset: PropTypes.number,
     navigation: PropTypes.shape({
       navigate: PropTypes.func.isRequired
     }).isRequired
   };
   componentDidMount() {
-    console.log("char series", this.props.marvelChar);
+    console.log("getStories", this.props.actions.getStories);
     if (this.props.marvelChar) {
-      this.props.actions.getSeries.getCharSeries(0, this.props.marvelChar.id);
+      this.props.actions.getStories.cleanCharStories();
+      this.props.actions.getStories.getCharStories(0, this.props.marvelChar.id);
     }
   }
-  actionOnRow = item => {
-    console.log(item);
-    this.props.navigation.navigate("MarvelSerieInfoScreen", {
-      serieId: item
-    });
-  };
   onEndReached = () => {
     const { actions, offset } = this.props;
-    actions.getSeries.getCharSeries(offset + 20, this.props.marvelChar.id);
+    actions.getStories.getCharStories(offset + 20, this.props.marvelChar.id);
   };
 
   _keyExtractor = item => `${item.id}`;
@@ -53,7 +48,6 @@ class ListCharStories extends React.Component {
     <View>
       <ListItem
         avatar
-        onPress={() => this.actionOnRow(item.id)}
         style={{
           marginBottom: 5,
           borderBottomRightRadius: 20,
@@ -66,7 +60,9 @@ class ListCharStories extends React.Component {
             square
             large
             source={{
-              uri: `${item.thumbnail.path}.${item.thumbnail.extension}`
+              uri: item.thumbnail
+                ? `${item.thumbnail.path}.${item.thumbnail.extension}`
+                : ""
             }}
           />
         </Left>
@@ -98,7 +94,7 @@ class ListCharStories extends React.Component {
       <Background>
         <FlatList
           keyExtractor={this.keyExtractor}
-          data={this.props.MarvelSeries}
+          data={this.props.MarvelStories}
           renderItem={this.renderItem}
           onEndReached={this.onEndReached}
         />
@@ -107,19 +103,16 @@ class ListCharStories extends React.Component {
   }
 }
 const mapStateToProps = state => {
-  console.log("propos Series");
-  console.log(state.getSeries);
-  console.log("propos Series");
   return {
-    MarvelSeries: state.getSeries.marvelCharSeriesList,
-    offset: state.getSeries.offset,
+    MarvelStories: state.getStories.marvelCharStoriesList,
+    offset: state.getStories.offset,
     marvelChar: state.marvelChar.marvelChar
   };
 };
 
 const mapDispatchToProps = dispatch => ({
   actions: {
-    getSeries: bindActionCreators(allTheActions.getSeries, dispatch)
+    getStories: bindActionCreators(allTheActions.getStories, dispatch)
   }
 });
 

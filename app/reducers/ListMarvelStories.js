@@ -1,73 +1,73 @@
 import {
-  GET_ALL_SERIES,
-  GET_CHAR_ALL_SERIES,
-  CLEAN_CHAR_SERIES,
-  GET_COMIC_ALL_SERIES,
-  CLEAN_COMIC_SERIES,
-  GET_STORY_ALL_SERIES,
-  CLEAN_STORY_SERIES
-} from "../actions/ListMarvelSeries";
+  GET_ALL_STORIES,
+  GET_CHAR_ALL_STORIES,
+  CLEAN_CHAR_STORIES,
+  GET_COMIC_ALL_STORIES,
+  CLEAN_COMIC_STORIES,
+  GET_SERIE_ALL_STORIES,
+  CLEAN_SERIE_STORIES
+} from "../actions/ListMarvelStories";
 
 const initialState = {
-  marvelSeriesList: [],
-  marvelCharSeriesList: [],
-  marvelComicSeriesList: [],
-  marvelStorySeriesList: [],
+  marvelStoriesList: [],
+  marvelCharStoriesList: [],
+  marvelComicStoriesList: [],
+  marvelSerieStoriesList: [],
   offset: 0
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case GET_ALL_SERIES:
+    case GET_ALL_STORIES:
       return {
         ...state,
-        marvelSeriesList: [
-          ...state.marvelSeriesList,
-          ...action.marvelSeriesList.list
+        marvelStoriesList: [
+          ...state.marvelStoriesList,
+          ...action.marvelStoriesList.list
         ],
-        offset: action.marvelSeriesList.offset
+        offset: action.marvelStoriesList.offset
       };
-    case GET_CHAR_ALL_SERIES:
+    case GET_CHAR_ALL_STORIES:
       return {
         ...state,
-        marvelCharSeriesList: [
-          ...state.marvelCharSeriesList,
-          ...action.marvelCharSeriesList.list
+        marvelCharStoriesList: [
+          ...state.marvelCharStoriesList,
+          ...action.marvelCharStoriesList.list
         ],
-        offset: action.marvelCharSeriesList.offset
+        offset: action.marvelCharStoriesList.offset
       };
-    case CLEAN_CHAR_SERIES:
+    case CLEAN_CHAR_STORIES:
       return {
         ...state,
-        marvelCharSeriesList: []
+        marvelCharStoriesList: []
       };
-    case GET_COMIC_ALL_SERIES:
+    case GET_COMIC_ALL_STORIES:
       return {
         ...state,
-        marvelComicSeriesList: [
-          ...state.marvelComicSeriesList,
-          ...action.marvelComicSeriesList.list
+        marvelComicStoriesList: [
+          ...state.marvelComicStoriesList,
+          ...action.marvelComicStoriesList.list
         ],
-        offset: action.marvelComicSeriesList.offset
+        offset: action.marvelComicStoriesList.offset
       };
-    case CLEAN_COMIC_SERIES:
+    case CLEAN_COMIC_STORIES:
       return {
         ...state,
-        marvelComicSeriesList: []
+        marvelComicStoriesList: []
       };
-    case GET_STORY_ALL_SERIES:
+    case GET_SERIE_ALL_STORIES:
       return {
         ...state,
-        marvelStorySeriesList: [
-          ...state.marvelStorySeriesList,
-          ...action.marvelStorySeriesList.list
+        marvelSerieStoriesList: [
+          ...state.marvelSerieStoriesList,
+          ...action.marvelSerieStoriesList.list
         ],
-        offset: action.marvelStorySeriesList.offset
+        offset: action.marvelSerieStoriesList.offset
       };
-    case CLEAN_STORY_SERIES:
+    case CLEAN_SERIE_STORIES:
       return {
         ...state,
-        marvelStorySeriesList: []
+        marvelSerieStoriesList: []
       };
     default:
       return state;
