@@ -34,6 +34,8 @@ class ListStorySeries extends React.Component {
       this.props.actions.getChars.getSerieChars(0, this.props.marvelSerie.id);
     }
   }
+
+  //Add 20 more elements
   onEndReached = () => {
     const { actions, offset } = this.props;
     actions.getChars.getSerieChars(offset + 20, this.props.marvelSerie.id);

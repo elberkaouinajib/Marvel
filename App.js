@@ -11,7 +11,6 @@ import StackNavigator from "./app/config/routes";
 import { ThemeProvider } from "styled-components";
 import { theme } from "./app/config/theme";
 import { store } from "./app/config/store";
-import { FooterTabsIconTextExample } from "./app/components/Footer";
 console.disableYellowBox = true;
 export default class App extends Component {
   render() {

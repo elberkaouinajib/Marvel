@@ -21,25 +21,25 @@ import PropTypes from "prop-types";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import allTheActions from "../../../actions";
-class ListStoryComics extends React.Component {
+class ListComicSeries extends React.Component {
   static propTypes = {
+    actions: PropTypes.object,
+    MarvelSeries: PropTypes.array,
+    offset: PropTypes.number,
     navigation: PropTypes.shape({
       navigate: PropTypes.func.isRequired
     }).isRequired
   };
-
   componentDidMount() {
-    console.log("serie chars ", this.props);
-    if (this.props.marvelStory) {
-      this.props.actions.getComics.cleanStoryComics();
-      this.props.actions.getComics.getStoryComics(0, this.props.marvelStory.id);
+    console.log("char series", this.props.marvelChar);
+    if (this.props.marvelChar) {
+      this.props.actions.getSeries.cleanCharSeries();
+      this.props.actions.getSeries.getCharSeries(0, this.props.marvelChar.id);
     }
   }
-
-  //Add 20 more elements
   onEndReached = () => {
     const { actions, offset } = this.props;
-    actions.getComics.getStoryComics(offset + 20, this.props.marvelStory.id);
+    actions.getSeries.getCharSeries(offset + 20, this.props.marvelChar.id);
   };
 
   _keyExtractor = item => `${item.id}`;
@@ -92,7 +92,7 @@ class ListStoryComics extends React.Component {
       <Background>
         <FlatList
           keyExtractor={this.keyExtractor}
-          data={this.props.MarvelComics}
+          data={this.props.MarvelSeries}
           renderItem={this.renderItem}
           onEndReached={this.onEndReached}
         />
@@ -101,20 +101,23 @@ class ListStoryComics extends React.Component {
   }
 }
 const mapStateToProps = state => {
+  console.log("propos Series");
+  console.log(state.getSeries);
+  console.log("propos Series");
   return {
-    MarvelComics: state.getComics.marvelStoryComicsList,
-    offset: state.getComics.offset,
-    marvelStory: state.marvelStory.marvelStory
+    MarvelSeries: state.getSeries.marvelCharSeriesList,
+    offset: state.getSeries.offset,
+    marvelChar: state.marvelChar.marvelChar
   };
 };
 
 const mapDispatchToProps = dispatch => ({
   actions: {
-    getComics: bindActionCreators(allTheActions.getComics, dispatch)
+    getSeries: bindActionCreators(allTheActions.getSeries, dispatch)
   }
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ListStoryComics);
+)(ListComicSeries);

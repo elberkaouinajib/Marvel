@@ -81,9 +81,9 @@ class MarvelSerieInfo extends Component {
                         borderColor: "yellow",
                         borderRadius: 10
                       }}
-                      title="Series"
+                      title="Comics"
                       onPress={() =>
-                        this.props.navigation.navigate("MarvelListCharsScreen")
+                        this.props.navigation.navigate("ListSerieComicsScreen")
                       }
                     />
                     <Button
@@ -96,7 +96,7 @@ class MarvelSerieInfo extends Component {
                       }}
                       title="Stories"
                       onPress={() =>
-                        this.props.navigation.navigate("MarvelListCharsScreen")
+                        this.props.navigation.navigate("ListSerieStoriesScreen")
                       }
                     />
                   </View>

@@ -29,14 +29,14 @@ class ListStoryChars extends React.Component {
   };
   componentDidMount() {
     console.log("serie chars ", this.props);
-    if (this.props.marvelSerie) {
-      this.props.actions.getChars.cleanSerieChars();
-      this.props.actions.getChars.getSerieChars(0, this.props.marvelSerie.id);
+    if (this.props.marvelStory) {
+      this.props.actions.getChars.cleanStoryChars();
+      this.props.actions.getChars.getStoryChars(0, this.props.marvelStory.id);
     }
   }
   onEndReached = () => {
     const { actions, offset } = this.props;
-    actions.getChars.getSerieChars(offset + 20, this.props.marvelSerie.id);
+    actions.getChars.getStoryChars(offset + 20, this.props.marvelStory.id);
   };
 
   _keyExtractor = item => `${item.id}`;
@@ -89,7 +89,7 @@ class ListStoryChars extends React.Component {
       <Background>
         <FlatList
           keyExtractor={this.keyExtractor}
-          data={this.props.MarvelSeries}
+          data={this.props.MarvelChars}
           renderItem={this.renderItem}
           onEndReached={this.onEndReached}
         />
@@ -98,13 +98,10 @@ class ListStoryChars extends React.Component {
   }
 }
 const mapStateToProps = state => {
-  console.log("propos Series");
-  console.log(state.getChars);
-  console.log("propos Series");
   return {
-    MarvelSeries: state.getChars.marvelSerieCharsList,
+    MarvelChars: state.getChars.marvelStoryCharsList,
     offset: state.getChars.offset,
-    marvelSerie: state.marvelSerie.marvelSerie
+    marvelStory: state.marvelStory.marvelStory
   };
 };
 

@@ -32,18 +32,18 @@ class ListMarvelStories extends React.Component {
   };
   componentDidMount() {
     if (!this.props.marvelseries) {
-      this.props.actions.getSeries.getSeries();
+      this.props.actions.getStories.getStories();
     }
   }
   actionOnRow = item => {
     console.log(item);
-    this.props.navigation.navigate("MarvelSerieInfoScreen", {
-      serieId: item
+    this.props.navigation.navigate("MarvelStoryInfoScreen", {
+      storyId: item
     });
   };
   onEndReached = () => {
     const { actions, offset } = this.props;
-    actions.getSeries.getSeries(offset + 20);
+    actions.getStories.getStories(offset + 20);
   };
 
   _keyExtractor = item => `${item.id}`;
@@ -65,7 +65,9 @@ class ListMarvelStories extends React.Component {
             square
             large
             source={{
-              uri: `${item.thumbnail.path}.${item.thumbnail.extension}`
+              uri: item.thumbnail
+                ? `${item.thumbnail.path}.${item.thumbnail.extension}`
+                : ""
             }}
           />
         </Left>
@@ -97,7 +99,7 @@ class ListMarvelStories extends React.Component {
       <Background>
         <FlatList
           keyExtractor={this.keyExtractor}
-          data={this.props.MarvelSeries}
+          data={this.props.MarvelStories}
           renderItem={this.renderItem}
           onEndReached={this.onEndReached}
         />
@@ -106,18 +108,15 @@ class ListMarvelStories extends React.Component {
   }
 }
 const mapStateToProps = state => {
-  console.log("propos marvel");
-  console.log(state.getSeries);
-  console.log("propos marvel");
   return {
-    MarvelSeries: state.getSeries.marvelSeriesList,
-    offset: state.getSeries.offset
+    MarvelStories: state.getStories.marvelStoriesList,
+    offset: state.getStories.offset
   };
 };
 
 const mapDispatchToProps = dispatch => ({
   actions: {
-    getSeries: bindActionCreators(allTheActions.getSeries, dispatch)
+    getStories: bindActionCreators(allTheActions.getStories, dispatch)
   }
 });
 

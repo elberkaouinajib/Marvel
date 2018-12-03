@@ -9,7 +9,6 @@ export default class Home extends Component {
       navigate: PropTypes.func.isRequired
     }).isRequired
   };
-  componentDidMount() {}
   render() {
     return (
       <View style={styles.container}>

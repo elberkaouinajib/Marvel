@@ -68,7 +68,7 @@ class MarvelCharInfo extends Component {
                       }}
                       title="Comics"
                       onPress={() =>
-                        this.props.navigation.navigate("MarvelListCharsScreen")
+                        this.props.navigation.navigate("ListCharComicsScreen")
                       }
                     />
                     <Button

@@ -98,9 +98,6 @@ class ListSerieChars extends React.Component {
   }
 }
 const mapStateToProps = state => {
-  console.log("propos Series");
-  console.log(state.getChars);
-  console.log("propos Series");
   return {
     MarvelSeries: state.getChars.marvelSerieCharsList,
     offset: state.getChars.offset,

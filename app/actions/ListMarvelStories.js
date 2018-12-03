@@ -2,6 +2,8 @@ export const GET_ALL_STORIES = "GET_ALL_STORIES";
 
 import md5 from "md5";
 import axios from "axios";
+
+//All Stories
 export const getStories = (offset = 0) => dispatch => {
   const publicKey = "809d2a2ba2e23dde5009c0c6e18bbeb3";
   const privateKey = "90844a9f70b1e8eedb0bdfcb597a1524b9a62822";
@@ -151,7 +153,6 @@ export const getSerieStories = (offset = 0, serieId) => dispatch => {
     }
   })
     .then(res => {
-      console.log("redux getCharSeries", res);
       dispatch(
         getAllSerieStories({
           list: res.data.data.results,

@@ -28,15 +28,17 @@ class ListSerieStories extends React.Component {
     }).isRequired
   };
   componentDidMount() {
-    console.log("serie chars ", this.props);
     if (this.props.marvelSerie) {
-      this.props.actions.getChars.cleanSerieChars();
-      this.props.actions.getChars.getSerieChars(0, this.props.marvelSerie.id);
+      this.props.actions.getStories.getSerieStories();
+      this.props.actions.getStories.getSerieStories(
+        0,
+        this.props.marvelSerie.id
+      );
     }
   }
   onEndReached = () => {
     const { actions, offset } = this.props;
-    actions.getChars.getSerieChars(offset + 20, this.props.marvelSerie.id);
+    actions.getStories.getSerieStories(offset + 20, this.props.marvelSerie.id);
   };
 
   _keyExtractor = item => `${item.id}`;
@@ -57,7 +59,9 @@ class ListSerieStories extends React.Component {
             square
             large
             source={{
-              uri: `${item.thumbnail.path}.${item.thumbnail.extension}`
+              uri: item.thumbnail
+                ? `${item.thumbnail.path}.${item.thumbnail.extension}`
+                : ""
             }}
           />
         </Left>
@@ -71,7 +75,7 @@ class ListSerieStories extends React.Component {
                 margin: 0
               }}
             >
-              <Text style={{ margin: 0, padding: 0 }}>{item.name}</Text>
+              <Text style={{ margin: 0, padding: 0 }}>{item.title}</Text>
             </Row>
             <Row size={75}>
               <Text note>
@@ -89,7 +93,7 @@ class ListSerieStories extends React.Component {
       <Background>
         <FlatList
           keyExtractor={this.keyExtractor}
-          data={this.props.MarvelSeries}
+          data={this.props.MarvelStories}
           renderItem={this.renderItem}
           onEndReached={this.onEndReached}
         />
@@ -98,19 +102,16 @@ class ListSerieStories extends React.Component {
   }
 }
 const mapStateToProps = state => {
-  console.log("propos Series");
-  console.log(state.getChars);
-  console.log("propos Series");
   return {
-    MarvelSeries: state.getChars.marvelSerieCharsList,
-    offset: state.getChars.offset,
+    MarvelStories: state.getStories.marvelSerieStoriesList,
+    offset: state.getStories.offset,
     marvelSerie: state.marvelSerie.marvelSerie
   };
 };
 
 const mapDispatchToProps = dispatch => ({
   actions: {
-    getChars: bindActionCreators(allTheActions.getChars, dispatch)
+    getStories: bindActionCreators(allTheActions.getStories, dispatch)
   }
 });
 

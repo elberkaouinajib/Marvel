@@ -13,6 +13,9 @@ import ListCharStories from "../screens/pages/Characters/ListCharStories";
 //Comics
 import ListMarvelComics from "../screens/pages/Comics/ListMarvelComics";
 import MarvelComicInfo from "../screens/pages/Comics/MarvelComicInfo";
+import ListComicChars from "../screens/pages/Comics/ListComicChars";
+import ListComicSeries from "../screens/pages/Comics/ListComicSeries";
+import ListComicStories from "../screens/pages/Comics/ListComicStories";
 
 //Series
 import ListMarvelSeries from "../screens/pages/Series/ListMarvelSeries";
@@ -23,11 +26,12 @@ import ListSerieStories from "../screens/pages/Series/ListSerieStories";
 
 //Stories
 import ListMarvelStories from "../screens/pages/Stories/ListMarvelStories";
+import MarvelStoryInfo from "../screens/pages/Stories/MarvelStoryInfo";
 import ListStoryChars from "../screens/pages/Stories/ListStoryChars";
 import ListStoryComics from "../screens/pages/Stories/ListStoryComics";
 import ListStorySeries from "../screens/pages/Stories/ListStorySeries";
-import MarvelStoryInfo from "../screens/pages/Stories/MarvelStoryInfo";
 
+//Home nav
 export const navHome = StackNavigator({
   HomeScreen: {
     screen: Home,
@@ -37,6 +41,7 @@ export const navHome = StackNavigator({
   }
 });
 
+//Characters nav
 export const navCharacters = StackNavigator({
   MarvelListCharsScreen: {
     screen: MarvelListChars,
@@ -70,6 +75,7 @@ export const navCharacters = StackNavigator({
   }
 });
 
+//Comics nav
 export const navComics = StackNavigator({
   ListMarvelComicsScreen: {
     screen: ListMarvelComics,
@@ -82,9 +88,28 @@ export const navComics = StackNavigator({
     navigationOptions: {
       headerTitle: "Comic Detail"
     }
+  },
+  ListComicCharsScreen: {
+    screen: ListComicChars,
+    navigationOptions: {
+      headerTitle: "Comic Heros"
+    }
+  },
+  ListComicSeriesScreen: {
+    screen: ListComicSeries,
+    navigationOptions: {
+      headerTitle: "Comic Series"
+    }
+  },
+  ListComicStoriesScreen: {
+    screen: ListComicStories,
+    navigationOptions: {
+      headerTitle: "Comic Stories"
+    }
   }
 });
 
+//Series nav
 export const navSeries = StackNavigator({
   ListMarvelSeriesScreen: {
     screen: ListMarvelSeries,
@@ -118,6 +143,7 @@ export const navSeries = StackNavigator({
   }
 });
 
+//Stories nav
 export const navStories = StackNavigator({
   ListMarvelStoriesScreen: {
     screen: ListMarvelStories,
@@ -151,6 +177,7 @@ export const navStories = StackNavigator({
   }
 });
 
+//Tab Navigation
 export default TabNavigator(
   {
     Home: {

@@ -31,20 +31,13 @@ class ListCharComics extends React.Component {
     }).isRequired
   };
   componentDidMount() {
-    console.log("char series", this.props.marvelChar);
     if (this.props.marvelChar) {
-      this.props.actions.getSeries.getCharSeries(0, this.props.marvelChar.id);
+      this.props.actions.getComics.getCharComics(0, this.props.marvelChar.id);
     }
   }
-  actionOnRow = item => {
-    console.log(item);
-    this.props.navigation.navigate("MarvelSerieInfoScreen", {
-      serieId: item
-    });
-  };
   onEndReached = () => {
     const { actions, offset } = this.props;
-    actions.getSeries.getCharSeries(offset + 20, this.props.marvelChar.id);
+    actions.getComics.getCharComics(offset + 20, this.props.marvelChar.id);
   };
 
   _keyExtractor = item => `${item.id}`;
@@ -53,7 +46,6 @@ class ListCharComics extends React.Component {
     <View>
       <ListItem
         avatar
-        onPress={() => this.actionOnRow(item.id)}
         style={{
           marginBottom: 5,
           borderBottomRightRadius: 20,
@@ -98,7 +90,7 @@ class ListCharComics extends React.Component {
       <Background>
         <FlatList
           keyExtractor={this.keyExtractor}
-          data={this.props.MarvelSeries}
+          data={this.props.MarvelComics}
           renderItem={this.renderItem}
           onEndReached={this.onEndReached}
         />
@@ -107,19 +99,16 @@ class ListCharComics extends React.Component {
   }
 }
 const mapStateToProps = state => {
-  console.log("propos Series");
-  console.log(state.getSeries);
-  console.log("propos Series");
   return {
-    MarvelSeries: state.getSeries.marvelCharSeriesList,
-    offset: state.getSeries.offset,
+    MarvelComics: state.getComics.marvelCharComicsList,
+    offset: state.getComics.offset,
     marvelChar: state.marvelChar.marvelChar
   };
 };
 
 const mapDispatchToProps = dispatch => ({
   actions: {
-    getSeries: bindActionCreators(allTheActions.getSeries, dispatch)
+    getComics: bindActionCreators(allTheActions.getComics, dispatch)
   }
 });
 

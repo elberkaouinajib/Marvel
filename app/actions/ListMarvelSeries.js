@@ -1,6 +1,8 @@
 export const GET_ALL_SERIES = "GET_ALL_SERIES";
 import md5 from "md5";
 import axios from "axios";
+
+//All Series
 export const getSeries = (offset = 0) => dispatch => {
   const publicKey = "809d2a2ba2e23dde5009c0c6e18bbeb3";
   const privateKey = "90844a9f70b1e8eedb0bdfcb597a1524b9a62822";
@@ -61,7 +63,6 @@ export const getCharSeries = (offset = 0, charId) => dispatch => {
     }
   })
     .then(res => {
-      console.log("redux getCharSeries", res);
       dispatch(
         getAllCharSeries({
           list: res.data.data.results,
@@ -129,12 +130,12 @@ export const cleanComicSeries = () => ({
 export const GET_STORY_ALL_SERIES = "GET_STORY_ALL_SERIES";
 export const CLEAN_STORY_SERIES = "CLEAN_STORY_SERIES";
 
-export const getStorySeries = (offset = 0, charId) => dispatch => {
+export const getStorySeries = (offset = 0, storyId) => dispatch => {
   const publicKey = "809d2a2ba2e23dde5009c0c6e18bbeb3";
   const privateKey = "90844a9f70b1e8eedb0bdfcb597a1524b9a62822";
   const TimeStamp = new Date().getMilliseconds();
   const hash = md5(`${TimeStamp}${privateKey}${publicKey}`);
-  const generatedUrl = `https://gateway.marvel.com//v1/public/characters/${charId}/series`;
+  const generatedUrl = `https://gateway.marvel.com//v1/public/stories/${storyId}/series`;
   axios({
     method: "GET",
     url: generatedUrl,
@@ -149,7 +150,6 @@ export const getStorySeries = (offset = 0, charId) => dispatch => {
     }
   })
     .then(res => {
-      console.log("redux getCharSeries", res);
       dispatch(
         getAllStorySeries({
           list: res.data.data.results,

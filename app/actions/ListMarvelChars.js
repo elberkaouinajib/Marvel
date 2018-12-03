@@ -1,6 +1,8 @@
 export const GET_ALL_CHARS = "GET_ALL_CHARS";
 import md5 from "md5";
 import axios from "axios";
+
+//All Chars
 export const getCharacters = (offset = 0) => dispatch => {
   const publicKey = "809d2a2ba2e23dde5009c0c6e18bbeb3";
   const privateKey = "90844a9f70b1e8eedb0bdfcb597a1524b9a62822";

@@ -21,25 +21,25 @@ import PropTypes from "prop-types";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import allTheActions from "../../../actions";
-class ListStoryComics extends React.Component {
+class ListComicStories extends React.Component {
   static propTypes = {
+    actions: PropTypes.object,
+    MarvelStories: PropTypes.array,
+    offset: PropTypes.number,
     navigation: PropTypes.shape({
       navigate: PropTypes.func.isRequired
     }).isRequired
   };
-
   componentDidMount() {
-    console.log("serie chars ", this.props);
-    if (this.props.marvelStory) {
-      this.props.actions.getComics.cleanStoryComics();
-      this.props.actions.getComics.getStoryComics(0, this.props.marvelStory.id);
+    console.log("getStories", this.props.actions.getStories);
+    if (this.props.marvelChar) {
+      this.props.actions.getStories.cleanCharStories();
+      this.props.actions.getStories.getCharStories(0, this.props.marvelChar.id);
     }
   }
-
-  //Add 20 more elements
   onEndReached = () => {
     const { actions, offset } = this.props;
-    actions.getComics.getStoryComics(offset + 20, this.props.marvelStory.id);
+    actions.getStories.getCharStories(offset + 20, this.props.marvelChar.id);
   };
 
   _keyExtractor = item => `${item.id}`;
@@ -60,7 +60,9 @@ class ListStoryComics extends React.Component {
             square
             large
             source={{
-              uri: `${item.thumbnail.path}.${item.thumbnail.extension}`
+              uri: item.thumbnail
+                ? `${item.thumbnail.path}.${item.thumbnail.extension}`
+                : ""
             }}
           />
         </Left>
@@ -92,7 +94,7 @@ class ListStoryComics extends React.Component {
       <Background>
         <FlatList
           keyExtractor={this.keyExtractor}
-          data={this.props.MarvelComics}
+          data={this.props.MarvelStories}
           renderItem={this.renderItem}
           onEndReached={this.onEndReached}
         />
@@ -102,19 +104,19 @@ class ListStoryComics extends React.Component {
 }
 const mapStateToProps = state => {
   return {
-    MarvelComics: state.getComics.marvelStoryComicsList,
-    offset: state.getComics.offset,
-    marvelStory: state.marvelStory.marvelStory
+    MarvelStories: state.getStories.marvelCharStoriesList,
+    offset: state.getStories.offset,
+    marvelChar: state.marvelChar.marvelChar
   };
 };
 
 const mapDispatchToProps = dispatch => ({
   actions: {
-    getComics: bindActionCreators(allTheActions.getComics, dispatch)
+    getStories: bindActionCreators(allTheActions.getStories, dispatch)
   }
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ListStoryComics);
+)(ListComicStories);

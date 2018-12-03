@@ -1,6 +1,8 @@
 export const GET_COMIC_INFO = "GET_COMIC_INFO";
 import md5 from "md5";
 import axios from "axios";
+
+//Get Comic Info
 export const getComicInfo = charId => dispatch => {
   const publicKey = "809d2a2ba2e23dde5009c0c6e18bbeb3";
   const privateKey = "90844a9f70b1e8eedb0bdfcb597a1524b9a62822";

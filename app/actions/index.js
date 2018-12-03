@@ -7,6 +7,7 @@ import * as marvelSerie from "./MarvelSerie";
 import * as getStories from "./ListMarvelStories";
 import * as marvelStory from "./MarvelStory";
 
+// Export all Actions
 export default {
   getChars,
   marvelChar,

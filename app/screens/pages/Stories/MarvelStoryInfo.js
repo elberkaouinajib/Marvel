@@ -12,101 +12,94 @@ class MarvelStoryInfo extends Component {
       navigate: PropTypes.func.isRequired
     }).isRequired
   };
-  state = {
-    personame: { toto: 0 }
-  };
   componentDidMount() {
     const { navigation } = this.props;
     const { actions } = this.props;
-    const serieId = navigation.getParam("serieId");
-    actions.marvelSerie.getSerieInfo(serieId);
+    const storyId = navigation.getParam("storyId");
+    actions.marvelStory.getStoryInfo(storyId);
   }
   render() {
     console.log(this.props);
-    if (this.props.marvelSerie.marvelSerie.thumbnail)
-      return (
-        <View style={styles.container}>
-          <Grid>
-            <Col>
-              <Row size={40}>
-                <Col>
-                  <Image
-                    style={{ height: 200, width: 200 }}
-                    source={{
-                      uri: `${
-                        this.props.marvelSerie.marvelSerie.thumbnail.path
-                      }.${
-                        this.props.marvelSerie.marvelSerie.thumbnail.extension
-                      }`
+    return (
+      <View style={styles.container}>
+        <Grid>
+          <Col>
+            <Row size={40}>
+              <Col>
+                <Image
+                  style={{ height: 200, width: 200 }}
+                  source={{
+                    uri: this.props.marvelStory.marvelStory.thumbnail
+                      ? `${this.props.marvelStory.marvelStory.thumbnail.path}.${
+                          this.props.marvelStory.marvelStory.thumbnail.extension
+                        }`
+                      : ""
+                  }}
+                />
+              </Col>
+              <Col>
+                <Text>Title : {this.props.marvelStory.marvelStory.title}</Text>
+              </Col>
+            </Row>
+            <Row size={60}>
+              <Col>
+                <Text
+                  style={{
+                    textShadowColor: "yellow",
+                    fontWeight: "bold",
+                    color: "red"
+                  }}
+                >
+                  Description :{" "}
+                </Text>
+                <Text>{this.props.marvelStory.marvelStory.description}</Text>
+                <View style={{ marginTop: 20 }}>
+                  <Button
+                    buttonStyle={{
+                      margin: 3,
+                      backgroundColor: "red",
+                      borderWidth: 1,
+                      borderColor: "yellow",
+                      borderRadius: 10
                     }}
+                    title="Heros"
+                    onPress={() =>
+                      this.props.navigation.navigate("ListStoryCharsScreen")
+                    }
                   />
-                </Col>
-                <Col>
-                  <Text>
-                    Title : {this.props.marvelSerie.marvelSerie.title}
-                  </Text>
-                </Col>
-              </Row>
-              <Row size={60}>
-                <Col>
-                  <Text
-                    style={{
-                      textShadowColor: "yellow",
-                      fontWeight: "bold",
-                      color: "red"
+                  <Button
+                    buttonStyle={{
+                      margin: 3,
+                      backgroundColor: "red",
+                      borderWidth: 1,
+                      borderColor: "yellow",
+                      borderRadius: 10
                     }}
-                  >
-                    Description :{" "}
-                  </Text>
-                  <Text>{this.props.marvelSerie.marvelSerie.description}</Text>
-                  <View style={{ marginTop: 20 }}>
-                    <Button
-                      buttonStyle={{
-                        margin: 3,
-                        backgroundColor: "red",
-                        borderWidth: 1,
-                        borderColor: "yellow",
-                        borderRadius: 10
-                      }}
-                      title="Heros"
-                      onPress={() =>
-                        this.props.navigation.navigate("ListSerieCharsScreen")
-                      }
-                    />
-                    <Button
-                      buttonStyle={{
-                        margin: 3,
-                        backgroundColor: "red",
-                        borderWidth: 1,
-                        borderColor: "yellow",
-                        borderRadius: 10
-                      }}
-                      title="Series"
-                      onPress={() =>
-                        this.props.navigation.navigate("MarvelListCharsScreen")
-                      }
-                    />
-                    <Button
-                      buttonStyle={{
-                        margin: 3,
-                        backgroundColor: "red",
-                        borderWidth: 1,
-                        borderColor: "yellow",
-                        borderRadius: 10
-                      }}
-                      title="Stories"
-                      onPress={() =>
-                        this.props.navigation.navigate("MarvelListCharsScreen")
-                      }
-                    />
-                  </View>
-                </Col>
-              </Row>
-            </Col>
-          </Grid>
-        </View>
-      );
-    else return <View />;
+                    title="Series"
+                    onPress={() =>
+                      this.props.navigation.navigate("ListStorySeriesScreen")
+                    }
+                  />
+                  <Button
+                    buttonStyle={{
+                      margin: 3,
+                      backgroundColor: "red",
+                      borderWidth: 1,
+                      borderColor: "yellow",
+                      borderRadius: 10
+                    }}
+                    title="Comics"
+                    onPress={() =>
+                      this.props.navigation.navigate("ListStoryComicsScreen")
+                    }
+                  />
+                </View>
+              </Col>
+            </Row>
+          </Col>
+        </Grid>
+      </View>
+    );
   }
 }
 
@@ -121,13 +114,13 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => {
   return {
-    marvelSerie: state.marvelSerie
+    marvelStory: state.marvelStory
   };
 };
 
 const mapDispatchToProps = dispatch => ({
   actions: {
-    marvelSerie: bindActionCreators(allTheActions.marvelSerie, dispatch)
+    marvelStory: bindActionCreators(allTheActions.marvelStory, dispatch)
   }
 });
 

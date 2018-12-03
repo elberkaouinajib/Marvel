@@ -28,15 +28,16 @@ class ListSerieComics extends React.Component {
     }).isRequired
   };
   componentDidMount() {
-    console.log("serie chars ", this.props);
+    console.log("this.props.marvelSerie.id", this.props.marvelSerie.id);
+    console.log("getComics", this.props.actions.getComics);
     if (this.props.marvelSerie) {
-      this.props.actions.getChars.cleanSerieChars();
-      this.props.actions.getChars.getSerieChars(0, this.props.marvelSerie.id);
+      this.props.actions.getComics.cleanSerieComics();
+      this.props.actions.getComics.getSerieComics(0, this.props.marvelSerie.id);
     }
   }
   onEndReached = () => {
     const { actions, offset } = this.props;
-    actions.getChars.getSerieChars(offset + 20, this.props.marvelSerie.id);
+    actions.getComics.getSerieComics(offset + 20, this.props.marvelSerie.id);
   };
 
   _keyExtractor = item => `${item.id}`;
@@ -71,7 +72,7 @@ class ListSerieComics extends React.Component {
                 margin: 0
               }}
             >
-              <Text style={{ margin: 0, padding: 0 }}>{item.name}</Text>
+              <Text style={{ margin: 0, padding: 0 }}>{item.title}</Text>
             </Row>
             <Row size={75}>
               <Text note>
@@ -89,7 +90,7 @@ class ListSerieComics extends React.Component {
       <Background>
         <FlatList
           keyExtractor={this.keyExtractor}
-          data={this.props.MarvelSeries}
+          data={this.props.MarvelComics}
           renderItem={this.renderItem}
           onEndReached={this.onEndReached}
         />
@@ -98,19 +99,16 @@ class ListSerieComics extends React.Component {
   }
 }
 const mapStateToProps = state => {
-  console.log("propos Series");
-  console.log(state.getChars);
-  console.log("propos Series");
   return {
-    MarvelSeries: state.getChars.marvelSerieCharsList,
-    offset: state.getChars.offset,
+    MarvelComics: state.getComics.marvelSerieComicsList,
+    offset: state.getComics.offset,
     marvelSerie: state.marvelSerie.marvelSerie
   };
 };
 
 const mapDispatchToProps = dispatch => ({
   actions: {
-    getChars: bindActionCreators(allTheActions.getChars, dispatch)
+    getComics: bindActionCreators(allTheActions.getComics, dispatch)
   }
 });
 
