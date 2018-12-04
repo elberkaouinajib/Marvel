@@ -28,8 +28,6 @@ class ListSerieComics extends React.Component {
     }).isRequired
   };
   componentDidMount() {
-    console.log("this.props.marvelSerie.id", this.props.marvelSerie.id);
-    console.log("getComics", this.props.actions.getComics);
     if (this.props.marvelSerie) {
       this.props.actions.getComics.cleanSerieComics();
       this.props.actions.getComics.getSerieComics(0, this.props.marvelSerie.id);

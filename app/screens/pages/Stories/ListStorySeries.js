@@ -28,7 +28,6 @@ class ListStorySeries extends React.Component {
     }).isRequired
   };
   componentDidMount() {
-    console.log("serie chars ", this.props);
     if (this.props.marvelStory) {
       this.props.actions.getSeries.cleanStorySeries();
       this.props.actions.getSeries.getStorySeries(0, this.props.marvelStory.id);
@@ -100,9 +99,6 @@ class ListStorySeries extends React.Component {
   }
 }
 const mapStateToProps = state => {
-  console.log("propos Series");
-  console.log(state.getChars);
-  console.log("propos Series");
   return {
     MarvelSeries: state.getSeries.marvelStorySeriesList,
     offset: state.getSeries.offset,

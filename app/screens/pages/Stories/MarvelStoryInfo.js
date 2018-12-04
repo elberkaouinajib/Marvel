@@ -19,7 +19,6 @@ class MarvelStoryInfo extends Component {
     actions.marvelStory.getStoryInfo(storyId);
   }
   render() {
-    console.log(this.props);
     return (
       <View style={styles.container}>
         <Grid>

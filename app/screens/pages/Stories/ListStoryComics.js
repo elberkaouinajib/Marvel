@@ -29,7 +29,6 @@ class ListStoryComics extends React.Component {
   };
 
   componentDidMount() {
-    console.log("serie chars ", this.props);
     if (this.props.marvelStory) {
       this.props.actions.getComics.cleanStoryComics();
       this.props.actions.getComics.getStoryComics(0, this.props.marvelStory.id);

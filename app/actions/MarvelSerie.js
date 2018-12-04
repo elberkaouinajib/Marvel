@@ -9,7 +9,6 @@ export const getSerieInfo = serieId => dispatch => {
   const TimeStamp = new Date().getMilliseconds();
   const hash = md5(`${TimeStamp}${privateKey}${publicKey}`);
   const generatedUrl = `https://gateway.marvel.com//v1/public/series/${serieId}`;
-  console.log(generatedUrl);
   axios({
     method: "GET",
     url: generatedUrl,

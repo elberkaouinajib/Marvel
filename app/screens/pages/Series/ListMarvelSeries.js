@@ -36,7 +36,6 @@ class ListMarvelSeries extends React.Component {
     }
   }
   actionOnRow = item => {
-    console.log(item);
     this.props.navigation.navigate("MarvelSerieInfoScreen", {
       serieId: item
     });
@@ -106,9 +105,6 @@ class ListMarvelSeries extends React.Component {
   }
 }
 const mapStateToProps = state => {
-  console.log("propos marvel");
-  console.log(state.getSeries);
-  console.log("propos marvel");
   return {
     MarvelSeries: state.getSeries.marvelSeriesList,
     offset: state.getSeries.offset

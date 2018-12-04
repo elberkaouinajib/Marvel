@@ -28,7 +28,6 @@ class ListSerieChars extends React.Component {
     }).isRequired
   };
   componentDidMount() {
-    console.log("serie chars ", this.props);
     if (this.props.marvelSerie) {
       this.props.actions.getChars.cleanSerieChars();
       this.props.actions.getChars.getSerieChars(0, this.props.marvelSerie.id);

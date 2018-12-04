@@ -22,7 +22,6 @@ class MarvelSerieInfo extends Component {
     actions.marvelSerie.getSerieInfo(serieId);
   }
   render() {
-    console.log(this.props);
     if (this.props.marvelSerie.marvelSerie.thumbnail)
       return (
         <View style={styles.container}>

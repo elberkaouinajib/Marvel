@@ -107,7 +107,6 @@ export const getComicChars = (offset = 0, ComicId) => dispatch => {
     }
   })
     .then(res => {
-      console.log("redux  getComicChars ", res);
       dispatch(
         getComicAllChars({
           list: res.data.data.results,

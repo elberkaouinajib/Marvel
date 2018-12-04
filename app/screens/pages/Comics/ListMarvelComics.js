@@ -15,13 +15,11 @@ class ListMarvelComics extends React.Component {
     }).isRequired
   };
   componentDidMount() {
-    console.log("List Comics props", this.props);
     if (!this.props.marvelComics) {
       this.props.actions.getComics.getComics();
     }
   }
   actionOnRow = item => {
-    console.log(item);
     this.props.navigation.navigate("MarvelComicInfoScreen", {
       ComicId: item
     });
@@ -65,9 +63,6 @@ class ListMarvelComics extends React.Component {
   }
 }
 const mapStateToProps = state => {
-  console.log("propos Comics");
-  console.log(state.getComics);
-  console.log("propos Comics");
   return {
     MarvelComics: state.getComics.marvelComicsList,
     offset: state.getComics.offset

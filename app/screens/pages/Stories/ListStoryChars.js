@@ -28,7 +28,6 @@ class ListStoryChars extends React.Component {
     }).isRequired
   };
   componentDidMount() {
-    console.log("serie chars ", this.props);
     if (this.props.marvelStory) {
       this.props.actions.getChars.cleanStoryChars();
       this.props.actions.getChars.getStoryChars(0, this.props.marvelStory.id);

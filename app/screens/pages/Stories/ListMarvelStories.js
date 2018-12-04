@@ -36,7 +36,6 @@ class ListMarvelStories extends React.Component {
     }
   }
   actionOnRow = item => {
-    console.log(item);
     this.props.navigation.navigate("MarvelStoryInfoScreen", {
       storyId: item
     });

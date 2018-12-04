@@ -31,8 +31,6 @@ class ListMarvelChars extends React.Component {
     }).isRequired
   };
   componentDidMount() {
-    console.log("List Chars props", this.props);
-    console.log("theme: ", theme.background);
     if (!this.props.marvelChars) {
       this.props.actions.getChars.getCharacters();
     }
@@ -106,9 +104,6 @@ class ListMarvelChars extends React.Component {
   }
 }
 const mapStateToProps = state => {
-  console.log("propos marvel");
-  console.log(state.getChars);
-  console.log("propos marvel");
   return {
     MarvelChars: state.getChars.marvelCharsList,
     offset: state.getChars.offset

@@ -50,7 +50,6 @@ export const getCharStories = (offset = 0, charId) => dispatch => {
   const TimeStamp = new Date().getMilliseconds();
   const hash = md5(`${TimeStamp}${privateKey}${publicKey}`);
   const generatedUrl = `https://gateway.marvel.com//v1/public/characters/${charId}/stories`;
-  console.log("generatedUrl", generatedUrl);
   axios({
     method: "GET",
     url: generatedUrl,
@@ -65,7 +64,6 @@ export const getCharStories = (offset = 0, charId) => dispatch => {
     }
   })
     .then(res => {
-      console.log("redux getCharStories", res);
       dispatch(
         getAllCharStories({
           list: res.data.data.results,
@@ -109,7 +107,7 @@ export const getComicStories = (offset = 0, comicId) => dispatch => {
     }
   })
     .then(res => {
-      console.log("redux getCharSeries", res);
+      console.log("redux", res);
       dispatch(
         getAllComicStories({
           list: res.data.data.results,

@@ -91,7 +91,6 @@ export const getSerieComics = (offset = 0, serieId) => dispatch => {
   const privateKey = "90844a9f70b1e8eedb0bdfcb597a1524b9a62822";
   const TimeStamp = new Date().getMilliseconds();
   const hash = md5(`${TimeStamp}${privateKey}${publicKey}`);
-  console.log("serieId", serieId);
   const generatedUrl = `https://gateway.marvel.com//v1/public/series/${serieId}/comics`;
   axios({
     method: "GET",
