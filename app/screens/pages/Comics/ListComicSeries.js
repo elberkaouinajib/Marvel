@@ -31,15 +31,14 @@ class ListComicSeries extends React.Component {
     }).isRequired
   };
   componentDidMount() {
-    console.log("char series", this.props.marvelChar);
-    if (this.props.marvelChar) {
-      this.props.actions.getSeries.cleanCharSeries();
-      this.props.actions.getSeries.getCharSeries(0, this.props.marvelChar.id);
+    if (this.props.marvelComic) {
+      this.props.actions.getSeries.cleanComicSeries();
+      this.props.actions.getSeries.getComicSeries(0, this.props.marvelComic.id);
     }
   }
   onEndReached = () => {
     const { actions, offset } = this.props;
-    actions.getSeries.getCharSeries(offset + 20, this.props.marvelChar.id);
+    actions.getSeries.getComicSeries(offset + 20, this.props.marvelComic.id);
   };
 
   _keyExtractor = item => `${item.id}`;
@@ -101,13 +100,10 @@ class ListComicSeries extends React.Component {
   }
 }
 const mapStateToProps = state => {
-  console.log("propos Series");
-  console.log(state.getSeries);
-  console.log("propos Series");
   return {
-    MarvelSeries: state.getSeries.marvelCharSeriesList,
+    MarvelSeries: state.getSeries.marvelComicSeriesList,
     offset: state.getSeries.offset,
-    marvelChar: state.marvelChar.marvelChar
+    marvelComic: state.marvelComic.marvelComic
   };
 };
 

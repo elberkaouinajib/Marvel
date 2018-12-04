@@ -106,7 +106,6 @@ export const getComicSeries = (offset = 0, comicId) => dispatch => {
     }
   })
     .then(res => {
-      console.log("redux getCharSeries", res);
       dispatch(
         getAllComicSeries({
           list: res.data.data.results,

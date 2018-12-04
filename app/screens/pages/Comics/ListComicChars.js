@@ -23,20 +23,22 @@ import { connect } from "react-redux";
 import allTheActions from "../../../actions";
 class ListComicChars extends React.Component {
   static propTypes = {
+    actions: PropTypes.object,
+    MarvelStories: PropTypes.array,
+    offset: PropTypes.number,
     navigation: PropTypes.shape({
       navigate: PropTypes.func.isRequired
     }).isRequired
   };
   componentDidMount() {
-    console.log("serie chars ", this.props);
-    if (this.props.marvelSerie) {
-      this.props.actions.getChars.cleanSerieChars();
-      this.props.actions.getChars.getSerieChars(0, this.props.marvelSerie.id);
+    if (this.props.marvelComic) {
+      this.props.actions.getChars.cleanComicChars();
+      this.props.actions.getChars.getComicChars(0, this.props.marvelComic.id);
     }
   }
   onEndReached = () => {
     const { actions, offset } = this.props;
-    actions.getChars.getSerieChars(offset + 20, this.props.marvelSerie.id);
+    actions.getChars.getComicChars(offset + 20, this.props.marvelComic.id);
   };
 
   _keyExtractor = item => `${item.id}`;
@@ -57,7 +59,9 @@ class ListComicChars extends React.Component {
             square
             large
             source={{
-              uri: `${item.thumbnail.path}.${item.thumbnail.extension}`
+              uri: item.thumbnail
+                ? `${item.thumbnail.path}.${item.thumbnail.extension}`
+                : ""
             }}
           />
         </Left>
@@ -89,7 +93,7 @@ class ListComicChars extends React.Component {
       <Background>
         <FlatList
           keyExtractor={this.keyExtractor}
-          data={this.props.MarvelSeries}
+          data={this.props.MarvelChars}
           renderItem={this.renderItem}
           onEndReached={this.onEndReached}
         />
@@ -98,13 +102,10 @@ class ListComicChars extends React.Component {
   }
 }
 const mapStateToProps = state => {
-  console.log("propos Series");
-  console.log(state.getChars);
-  console.log("propos Series");
   return {
-    MarvelSeries: state.getChars.marvelSerieCharsList,
+    MarvelChars: state.getChars.marvelComicCharsList,
     offset: state.getChars.offset,
-    marvelSerie: state.marvelSerie.marvelSerie
+    marvelComic: state.marvelComic.marvelComic
   };
 };
 

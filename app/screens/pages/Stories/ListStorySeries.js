@@ -29,16 +29,16 @@ class ListStorySeries extends React.Component {
   };
   componentDidMount() {
     console.log("serie chars ", this.props);
-    if (this.props.marvelSerie) {
-      this.props.actions.getChars.cleanSerieChars();
-      this.props.actions.getChars.getSerieChars(0, this.props.marvelSerie.id);
+    if (this.props.marvelStory) {
+      this.props.actions.getSeries.cleanStorySeries();
+      this.props.actions.getSeries.getStorySeries(0, this.props.marvelStory.id);
     }
   }
 
   //Add 20 more elements
   onEndReached = () => {
     const { actions, offset } = this.props;
-    actions.getChars.getSerieChars(offset + 20, this.props.marvelSerie.id);
+    actions.getSeries.getStorySeries(offset + 20, this.props.marvelStory.id);
   };
 
   _keyExtractor = item => `${item.id}`;
@@ -104,15 +104,15 @@ const mapStateToProps = state => {
   console.log(state.getChars);
   console.log("propos Series");
   return {
-    MarvelSeries: state.getChars.marvelSerieCharsList,
-    offset: state.getChars.offset,
-    marvelSerie: state.marvelSerie.marvelSerie
+    MarvelSeries: state.getSeries.marvelStorySeriesList,
+    offset: state.getSeries.offset,
+    marvelStory: state.marvelStory.marvelStory
   };
 };
 
 const mapDispatchToProps = dispatch => ({
   actions: {
-    getChars: bindActionCreators(allTheActions.getChars, dispatch)
+    getSeries: bindActionCreators(allTheActions.getSeries, dispatch)
   }
 });
 
